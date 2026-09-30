@@ -1,0 +1,32 @@
+metro_id,metro_name,state,region,population,pop_growth_5yr_pct,median_hh_income_usd,lat,lon,kestrel_store_count,has_kestrel_store,first_store_open_year,world_cup_2026_host_city
+NYC,New York,NY,Northeast,19500000,0.8,98000,40.71,-74.01,6,true,2009,true
+LAX,Los Angeles,CA,Pacific,12800000,-0.5,90000,34.05,-118.24,5,true,2010,true
+CHI,Chicago,IL,Midwest,9300000,-0.3,85000,41.88,-87.63,4,true,2011,false
+DFW,Dallas-Fort Worth,TX,South Central,8100000,9.5,87000,32.78,-96.8,4,true,2012,true
+HOU,Houston,TX,South Central,7500000,8.0,80000,29.76,-95.37,3,true,2013,true
+WAS,Washington DC,DC,Northeast,6300000,3.5,118000,38.91,-77.04,3,true,2012,false
+PHL,Philadelphia,PA,Northeast,6200000,1.0,88000,39.95,-75.17,2,true,2014,true
+ATL,Atlanta,GA,Southeast,6300000,8.0,86000,33.75,-84.39,3,true,2013,true
+MIA,Miami,FL,Southeast,6200000,4.5,73000,25.76,-80.19,3,true,2015,true
+PHX,Phoenix,AZ,Southwest,5100000,9.0,82000,33.45,-112.07,3,true,2014,false
+BOS,Boston,MA,Northeast,4900000,1.5,110000,42.36,-71.06,2,true,2012,true
+SFO,San Francisco,CA,Pacific,4600000,-2.5,130000,37.77,-122.42,2,true,2011,true
+SEA,Seattle,WA,Pacific,4000000,5.0,110000,47.61,-122.33,2,true,2013,true
+MSP,Minneapolis,MN,Midwest,3700000,3.0,95000,44.98,-93.27,2,true,2014,false
+SAN,San Diego,CA,Pacific,3300000,1.5,98000,32.72,-117.16,2,true,2016,false
+TPA,Tampa,FL,Southeast,3300000,9.5,71000,27.95,-82.46,2,true,2016,false
+DEN,Denver,CO,Mountain,3000000,6.5,98000,39.74,-104.99,2,true,2015,false
+ORL,Orlando,FL,Southeast,2800000,10.0,72000,28.54,-81.38,2,true,2017,false
+POR,Portland,OR,Pacific,2500000,3.0,90000,45.52,-122.68,1,true,2018,false
+DET,Detroit,MI,Midwest,4300000,-0.5,72000,42.33,-83.05,2,true,2015,false
+NSH,Nashville,TN,Southeast,2100000,12.0,80000,36.16,-86.78,0,false,,false
+AUS,Austin,TX,South Central,2500000,16.0,95000,30.27,-97.74,0,false,,false
+RDU,Raleigh-Durham,NC,Southeast,1500000,13.0,92000,35.78,-78.64,0,false,,false
+CLT,Charlotte,NC,Southeast,2800000,10.5,80000,35.23,-80.84,0,false,,false
+SAT,San Antonio,TX,South Central,2700000,9.0,70000,29.42,-98.49,0,false,,false
+LAS,Las Vegas,NV,Southwest,2300000,8.0,70000,36.17,-115.14,0,false,,false
+CMH,Columbus,OH,Midwest,2200000,5.5,76000,39.96,-83.0,0,false,,false
+MCI,Kansas City,MO,Midwest,2200000,4.5,78000,39.1,-94.58,0,false,,true
+SLC,Salt Lake City,UT,Mountain,1300000,8.0,90000,40.76,-111.89,0,false,,false
+JAX,Jacksonville,FL,Southeast,1700000,11.0,75000,30.33,-81.66,0,false,,false
+BOI,Boise,ID,Mountain,800000,14.0,78000,43.62,-116.2,0,false,,false

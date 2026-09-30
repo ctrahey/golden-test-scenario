@@ -1,0 +1,57 @@
+product_id,product_name,brand,sport_id,launch_date,list_price_usd,is_private_label
+PRUN01,Kestrel Pro Tempo Road Shoe,Kestrel Pro,RUN,,124.0,true
+PRUN02,Aerion Trail Runner GTX,Aerion,RUN,,142.6,false
+PRUN03,Kestrel Pro Carbon Race Flat,Kestrel Pro,RUN,2024-04-01,210.8,true
+PRUN04,Loftline Hydration Vest,Loftline,RUN,,74.4,false
+PCYC01,Aerion Gravel Bike 105,Aerion,CYC,,1190.0,false
+PCYC02,Stridewell Road Helmet MIPS,Stridewell,CYC,,136.0,false
+PCYC03,Kestrel Pro Smart Trainer,Kestrel Pro,CYC,,595.0,true
+PCYC04,Courtcraft Bib Short,Courtcraft,CYC,,93.5,false
+PSOC01,Stridewell Match Ball Pro,Stridewell,SOC,,38.0,false
+PSOC02,Loftline FG Cleat Elite,Loftline,SOC,,121.6,false
+PSOC03,Kestrel Pro Shin Guard Lite,Kestrel Pro,SOC,,19.0,true
+PSOC04,Ironpeak 2026 Host City Replica Ball,Ironpeak,SOC,2025-11-01,41.8,false
+PBSK01,Loftline Indoor Game Ball,Loftline,BSK,,63.0,false
+PBSK02,Courtcraft Court Shoe Low,Courtcraft,BSK,,126.0,false
+PBSK03,Kestrel Pro Portable Hoop 54in,Kestrel Pro,BSK,,360.0,true
+PBSK04,Vela Compression Sleeve,Vela,BSK,,18.0,false
+PBSB01,Courtcraft BBCOR Alloy Bat,Courtcraft,BSB,,182.0,false
+PBSB02,Ironpeak Fielding Glove 11.75,Ironpeak,BSB,,126.0,false
+PBSB03,Kestrel Pro Batting Helmet,Kestrel Pro,BSB,,63.0,true
+PBSB04,Bramble USSSA Composite Bat,Bramble,BSB,2023-09-01,280.0,false
+PFTB01,Ironpeak Youth Helmet,Ironpeak,FTB,,165.0,false
+PFTB02,Vela Receiver Gloves,Vela,FTB,,44.0,false
+PFTB03,Kestrel Pro Official Game Ball,Kestrel Pro,FTB,,88.0,true
+PFTB04,Kestrel Pro Flag Football Set,Kestrel Pro,FTB,2024-07-01,38.5,true
+PGLF01,Vela Game-Improvement Irons,Vela,GLF,,665.0,false
+PGLF02,Bramble Distance Ball 12pk,Bramble,GLF,,38.0,false
+PGLF03,Kestrel Pro Stand Bag,Kestrel Pro,GLF,,209.0,true
+PGLF04,Aerion Launch Monitor Mini,Aerion,GLF,2023-06-01,522.5,false
+PTEN01,Bramble Tour Racquet 98,Bramble,TEN,,216.0,false
+PTEN02,Kestrel Pro Pressurized Balls 3pk,Kestrel Pro,TEN,,5.76,true
+PTEN03,Kestrel Pro All-Court Shoe,Kestrel Pro,TEN,,124.8,true
+PTEN04,Stridewell String Reel,Stridewell,TEN,,144.0,false
+PPKB01,Kestrel Pro Carbon Paddle 16mm,Kestrel Pro,PKB,,140.0,true
+PPKB02,Aerion Outdoor Balls 6pk,Aerion,PKB,,16.0,false
+PPKB03,Kestrel Pro Court Shoe,Kestrel Pro,PKB,,112.0,true
+PPKB04,Loftline Thermoformed Pro Paddle,Loftline,PKB,2024-02-01,200.0,false
+PLAX01,Aerion Attack Complete Stick,Aerion,LAX,,105.0,false
+PLAX02,Stridewell Lacrosse Helmet,Stridewell,LAX,,225.0,false
+PLAX03,Kestrel Pro Arm Guards,Kestrel Pro,LAX,,75.0,true
+PLAX04,Courtcraft Mesh Head Pro,Courtcraft,LAX,2024-09-01,120.0,false
+PHKY01,Stridewell Composite Stick,Stridewell,HKY,,209.0,false
+PHKY02,Loftline Senior Skate,Loftline,HKY,,440.0,false
+PHKY03,Kestrel Pro Helmet Combo,Kestrel Pro,HKY,,154.0,true
+PHKY04,Ironpeak Inline Street Skate,Ironpeak,HKY,,176.0,false
+PSNW01,Loftline All-Mountain Ski,Loftline,SNW,,600.0,false
+PSNW02,Courtcraft Snowboard Boot,Courtcraft,SNW,,288.0,false
+PSNW03,Kestrel Pro Insulated Shell,Kestrel Pro,SNW,,336.0,true
+PSNW04,Vela Ski Helmet MIPS,Vela,SNW,,168.0,false
+PCLM01,Courtcraft Bouldering Shoe,Courtcraft,CLM,,130.0,false
+PCLM02,Ironpeak Chalk Bag,Ironpeak,CLM,,25.0,false
+PCLM03,Kestrel Pro Crash Pad,Kestrel Pro,CLM,,225.0,true
+PCLM04,Bramble Harness Lite,Bramble,CLM,2024-03-01,70.0,false
+PVOL01,Ironpeak Indoor Game Ball,Ironpeak,VOL,,63.0,false
+PVOL02,Vela Knee Pads,Vela,VOL,,28.0,false
+PVOL03,Kestrel Pro Beach Ball Pro,Kestrel Pro,VOL,,56.0,true
+PVOL04,Kestrel Pro Court Shoe Mid,Kestrel Pro,VOL,2024-08-01,126.0,true

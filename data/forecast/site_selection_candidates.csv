@@ -1,0 +1,12 @@
+metro_id,model_rank,projected_y1_store_sales_p10_usd,projected_y1_store_sales_p50_usd,projected_y1_store_sales_p90_usd,online_sales_ttm_usd,model_inputs,model_name,assumed_open_date,forecast_version
+AUS,1,5961446,7948595,9935744,7794325,population; median HH income; trailing-12m online sales,Site Model v2 (demographic),2027-09-01,2026-09-15
+CLT,2,5569200,7425601,9282001,6702968,population; median HH income; trailing-12m online sales,Site Model v2 (demographic),2027-09-01,2026-09-15
+SAT,3,4893347,6524463,8155579,6050165,population; median HH income; trailing-12m online sales,Site Model v2 (demographic),2027-09-01,2026-09-15
+NSH,4,4737302,6316403,7895504,7122817,population; median HH income; trailing-12m online sales,Site Model v2 (demographic),2027-09-01,2026-09-15
+MCI,5,4288961,5718615,7148269,4825792,population; median HH income; trailing-12m online sales,Site Model v2 (demographic),2027-09-01,2026-09-15
+CMH,6,4263325,5684433,7105542,5004636,population; median HH income; trailing-12m online sales,Site Model v2 (demographic),2027-09-01,2026-09-15
+LAS,7,4246052,5661403,7076753,5282788,population; median HH income; trailing-12m online sales,Site Model v2 (demographic),2027-09-01,2026-09-15
+RDU,8,3670745,4894326,6117908,4805035,population; median HH income; trailing-12m online sales,Site Model v2 (demographic),2027-09-01,2026-09-15
+JAX,9,3375260,4500347,5625433,4061773,population; median HH income; trailing-12m online sales,Site Model v2 (demographic),2027-09-01,2026-09-15
+SLC,10,3164916,4219889,5274861,4124089,population; median HH income; trailing-12m online sales,Site Model v2 (demographic),2027-09-01,2026-09-15
+BOI,11,1829985,2439981,3049976,2405355,population; median HH income; trailing-12m online sales,Site Model v2 (demographic),2027-09-01,2026-09-15

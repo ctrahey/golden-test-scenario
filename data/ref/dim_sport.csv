@@ -1,0 +1,16 @@
+sport_id,sport_name,department,carried_by_kestrel,league_data_partner
+RUN,Running,Fitness & Outdoor,true,
+CYC,Cycling,Fitness & Outdoor,true,
+SOC,Soccer,Team Sports,true,National Youth & Adult Soccer Alliance
+BSK,Basketball,Team Sports,true,Hoops America Rec Network
+BSB,Baseball & Softball,Team Sports,true,Diamond Youth Baseball Federation
+FTB,Football,Team Sports,true,Gridiron Youth League Association
+GLF,Golf,Golf,true,
+TEN,Tennis,Racquet Sports,true,Community Tennis League of America
+PKB,Pickleball,Racquet Sports,true,American Pickleball League Network
+PDL,Padel,Racquet Sports,false,US Padel Circuit
+LAX,Lacrosse,Team Sports,true,US Lacrosse Club Network
+HKY,Ice Hockey,Team Sports,true,Amateur Hockey Federation
+SNW,Ski & Snowboard,Fitness & Outdoor,true,
+CLM,Climbing,Fitness & Outdoor,true,
+VOL,Volleyball,Team Sports,true,National Volleyball Clubs Association

@@ -8,7 +8,7 @@ This repo holds a fictional sporting-goods retailer's internal, external and for
 ## Quickstart
 
 ```bash
-python3 generator/generate.py      # ~2s, stdlib only -> data/<schema>/<table>.csv (~20 MB)
+python3 generator/generate.py      # optional: data/ is committed; this rebuilds it byte-for-byte (~2s, stdlib only)
 python3 generator/check_story.py   # loads the CSVs into SQLite and prints every number the demo relies on
 ```
 
@@ -26,7 +26,7 @@ Notes:
 - If you don't know Golden's egress IPs, `GOLDEN_CIDR=0.0.0.0/0` works for a throwaway stack. The password is still required.
 
 ### Option B: skip AWS
-Golden accepts CSV uploads directly. Run the generator, then upload the 10 files in `data/`. The table names and join keys are the same either way.
+Golden accepts CSV uploads directly. Upload the 10 files in `data/`. The table names and join keys are the same either way.
 
 ## Data model
 
@@ -49,5 +49,5 @@ generator/generate.py     data generator (deterministic seed)
 generator/check_story.py  verifies the story shows up in the data
 sql/                      Redshift DDL, COPY, read-only user
 aws/                      CloudFormation template + deploy/load/teardown scripts
-data/                     generated CSVs (gitignored; run the generator)
+data/                     the exact CSVs used in the demo (regenerate identically with the generator)
 ```
