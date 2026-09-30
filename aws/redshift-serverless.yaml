@@ -1,0 +1,155 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Kestrel Sports demo - Redshift Serverless workgroup (publicly reachable on 5439 from allowed CIDRs),
+  S3 bucket for raw CSVs, COPY role, and Secrets Manager credentials. Throwaway demo stack.
+
+Parameters:
+  Prefix:
+    Type: String
+    Default: kestrel-demo
+    AllowedPattern: "[a-z][a-z0-9-]{2,30}"
+  AvailabilityZones:
+    Type: List<AWS::EC2::AvailabilityZone::Name>
+    Description: Exactly 3 AZs that support Redshift Serverless (deploy.sh picks these for you).
+  GoldenCidr:
+    Type: String
+    Description: CIDR Golden Analytics connects from (see Golden's docs for their egress IPs).
+    AllowedPattern: "\\d+\\.\\d+\\.\\d+\\.\\d+/\\d+"
+  MyCidr:
+    Type: String
+    Default: ""
+    Description: Optional - your own IP/32 for SQL clients.
+  BaseCapacity:
+    Type: Number
+    Default: 8
+    Description: RPUs. 8 is the minimum and plenty for this data (~300k rows).
+
+Conditions:
+  HasMyCidr: !Not [!Equals [!Ref MyCidr, ""]]
+
+Resources:
+  # ------------------------------------------------------------------ network
+  Vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.42.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      Tags: [{ Key: Name, Value: !Sub "${Prefix}-vpc" }]
+  Igw:
+    Type: AWS::EC2::InternetGateway
+  IgwAttach:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties: { VpcId: !Ref Vpc, InternetGatewayId: !Ref Igw }
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties: { VpcId: !Ref Vpc }
+  DefaultRoute:
+    Type: AWS::EC2::Route
+    DependsOn: IgwAttach
+    Properties: { RouteTableId: !Ref RouteTable, DestinationCidrBlock: 0.0.0.0/0, GatewayId: !Ref Igw }
+  SubnetA:
+    Type: AWS::EC2::Subnet
+    Properties: { VpcId: !Ref Vpc, CidrBlock: 10.42.0.0/20, AvailabilityZone: !Select [0, !Ref AvailabilityZones] }
+  SubnetB:
+    Type: AWS::EC2::Subnet
+    Properties: { VpcId: !Ref Vpc, CidrBlock: 10.42.16.0/20, AvailabilityZone: !Select [1, !Ref AvailabilityZones] }
+  SubnetC:
+    Type: AWS::EC2::Subnet
+    Properties: { VpcId: !Ref Vpc, CidrBlock: 10.42.32.0/20, AvailabilityZone: !Select [2, !Ref AvailabilityZones] }
+  SubnetARoute:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: { SubnetId: !Ref SubnetA, RouteTableId: !Ref RouteTable }
+  SubnetBRoute:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: { SubnetId: !Ref SubnetB, RouteTableId: !Ref RouteTable }
+  SubnetCRoute:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: { SubnetId: !Ref SubnetC, RouteTableId: !Ref RouteTable }
+  RedshiftSg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Redshift 5439 from Golden (and optionally you)
+      VpcId: !Ref Vpc
+      SecurityGroupIngress:
+        - { IpProtocol: tcp, FromPort: 5439, ToPort: 5439, CidrIp: !Ref GoldenCidr, Description: Golden Analytics }
+  MyIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Condition: HasMyCidr
+    Properties: { GroupId: !Ref RedshiftSg, IpProtocol: tcp, FromPort: 5439, ToPort: 5439, CidrIp: !Ref MyCidr, Description: Me }
+
+  # ------------------------------------------------------------------ data + access
+  DataBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${Prefix}-data-${AWS::AccountId}-${AWS::Region}"
+      PublicAccessBlockConfiguration:
+        { BlockPublicAcls: true, BlockPublicPolicy: true, IgnorePublicAcls: true, RestrictPublicBuckets: true }
+  CopyRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: { Service: [redshift.amazonaws.com, redshift-serverless.amazonaws.com] }
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: read-demo-bucket
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: [s3:GetObject, s3:ListBucket, s3:GetBucketLocation]
+                Resource: [!GetAtt DataBucket.Arn, !Sub "${DataBucket.Arn}/*"]
+  AdminSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: !Sub "${Prefix}/redshift-admin"
+      GenerateSecretString:
+        SecretStringTemplate: '{"username":"kestrel_admin"}'
+        GenerateStringKey: password
+        PasswordLength: 24
+        ExcludePunctuation: true
+        RequireEachIncludedType: true
+      Tags: [{ Key: RedshiftDataFullAccess, Value: "true" }]
+  GoldenSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: !Sub "${Prefix}/golden-readonly"
+      GenerateSecretString:
+        SecretStringTemplate: '{"username":"golden_ro"}'
+        GenerateStringKey: password
+        PasswordLength: 24
+        ExcludePunctuation: true
+        RequireEachIncludedType: true
+
+  # ------------------------------------------------------------------ redshift serverless
+  Namespace:
+    Type: AWS::RedshiftServerless::Namespace
+    Properties:
+      NamespaceName: !Sub "${Prefix}-ns"
+      DbName: kestrel
+      AdminUsername: kestrel_admin
+      AdminUserPassword: !Sub "{{resolve:secretsmanager:${AdminSecret}:SecretString:password}}"
+      IamRoles: [!GetAtt CopyRole.Arn]
+      DefaultIamRoleArn: !GetAtt CopyRole.Arn
+  Workgroup:
+    Type: AWS::RedshiftServerless::Workgroup
+    DependsOn: [SubnetARoute, SubnetBRoute, SubnetCRoute, DefaultRoute]
+    Properties:
+      WorkgroupName: !Sub "${Prefix}-wg"
+      NamespaceName: !Ref Namespace
+      BaseCapacity: !Ref BaseCapacity
+      PubliclyAccessible: true
+      SubnetIds: [!Ref SubnetA, !Ref SubnetB, !Ref SubnetC]
+      SecurityGroupIds: [!Ref RedshiftSg]
+
+Outputs:
+  WorkgroupName: { Value: !Ref Workgroup }
+  Endpoint: { Value: !GetAtt Workgroup.Workgroup.Endpoint.Address }
+  Port: { Value: "5439" }
+  Database: { Value: kestrel }
+  DataBucket: { Value: !Ref DataBucket }
+  AdminSecretArn: { Value: !Ref AdminSecret }
+  GoldenSecretArn: { Value: !Ref GoldenSecret }
